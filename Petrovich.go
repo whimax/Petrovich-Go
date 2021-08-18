@@ -29,15 +29,15 @@ type rule struct {
 // падежи инициализируются константами от 0 до 4
 const (
 	// Родительный
-	CASE_GENITIVE = iota
+	Genitive = iota
 	// Дательный
-	CASE_DATIVE
+	Dative
 	// Винительный
-	CASE_ACCUSATIVE
+	Accusative
 	// Творительный
-	CASE_INSTRUMENTAL
+	Instrumental
 	// Предложный
-	CASE_PREPOSITIONAL
+	Prepositional
 )
 
 func LoadRules(FileWithRules string) (*rules, error) {
