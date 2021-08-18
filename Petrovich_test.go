@@ -22,11 +22,11 @@ func TestRules_Firstname(t *testing.T) {
 
 	Init("rules.json")
 
-	if p.InfFirstname("Дамир", CASE_GENITIVE, "male") != "Дамира" {
+	if p.InfFirstname("Дамир", Genitive, "male") != "Дамира" {
 		t.Error("Firstname false")
 	}
 
-	if p.InfFirstname("Анна-Мария", CASE_DATIVE, "female") != "Анне-Марии" {
+	if p.InfFirstname("Анна-Мария", Dative, "female") != "Анне-Марии" {
 		t.Error("Firstname false")
 	}
 
@@ -35,27 +35,27 @@ func TestRules_Firstname(t *testing.T) {
 func TestRules_Lastname(t *testing.T) {
 	Init("rules.json")
 
-	if p.InfLastname("Кочубей", CASE_DATIVE, "male") != "Кочубею" {
+	if p.InfLastname("Кочубей", Dative, "male") != "Кочубею" {
 		t.Error("Lastname false")
 	}
 
-	if p.InfLastname("Козлов", CASE_DATIVE, "male") != "Козлову" {
+	if p.InfLastname("Козлов", Dative, "male") != "Козлову" {
 		t.Error("Lastname false")
 	}
 
-	if p.InfLastname("Салтыков-Щедрин", CASE_DATIVE, "male") != "Салтыкову-Щедрину" {
+	if p.InfLastname("Салтыков-Щедрин", Dative, "male") != "Салтыкову-Щедрину" {
 		t.Error("Lastname false")
 	}
 
-	if p.InfLastname("Дюма", CASE_DATIVE, "male") != "Дюма" {
+	if p.InfLastname("Дюма", Dative, "male") != "Дюма" {
 		t.Error("Lastname false")
 	}
 
-	if p.InfLastname("Воробей", CASE_DATIVE, "male") != "Воробью" {
+	if p.InfLastname("Воробей", Dative, "male") != "Воробью" {
 		t.Error("Lastname false")
 	}
 
-	if p.InfLastname("Плевако", CASE_DATIVE, "male") != "Плевако" {
+	if p.InfLastname("Плевако", Dative, "male") != "Плевако" {
 		t.Error("Lastname false")
 	}
 
@@ -64,14 +64,26 @@ func TestRules_Lastname(t *testing.T) {
 func TestRules_Middlename(t *testing.T) {
 	Init("rules.json")
 
-	if p.InfMiddlename("Борух-Бендитовна", CASE_DATIVE, "female") != "Борух-Бендитовне" {
+	if p.InfMiddlename("Борух-Бендитовна", Dative, "female") != "Борух-Бендитовне" {
 		t.Error("Middlename false")
 	}
 
-	if p.InfMiddlename("Георгиевна-Авраамовна", CASE_DATIVE, "female") != "Георгиевне-Авраамовне" {
+	if p.InfMiddlename("Георгиевна-Авраамовна", Dative, "female") != "Георгиевне-Авраамовне" {
 		t.Error("Middlename false")
 	}
 
+}
+
+func TestRules_InfFio(t *testing.T) {
+	Init("rules.json")
+
+	if p.InfFio("Цой Виктор Робертович", Accusative, true) != "Цоя В.Р." {
+		t.Error("Fio short version false")
+	}
+
+	if p.InfFio("Белякова Ирина Сергеевна", Dative, false) != "Беляковой Ирине Сергеевне" {
+		t.Error("Fio long version false")
+	}
 }
 
 // Other tests
